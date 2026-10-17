@@ -108,8 +108,8 @@ Response:
 
 **Monika Gupta**
 - Made with 💖 in Delhi
-- LinkedIn: [Your LinkedIn]
-- GitHub: @MonikaGupta-source
+- LinkedIn: https://www.linkedin.com/in/monika-gupta-9ab3a6335/
+- GitHub: https://github.com/MonikaGupta-source
 
 ---
 
