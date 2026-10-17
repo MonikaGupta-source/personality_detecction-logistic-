@@ -13,7 +13,6 @@ const personalityMap = {
     tagline: "The Sunshine Girl",
     desc: "You literally light up every room! Your giggles, chats and big heart make everyone smile. You're friendly, bubbly and born to sparkle ✨"
   },
-  // also support string keys from backend
   "0": {
     label: "Introvert 🌙",
     tagline: "The Cozy Dreamer",
@@ -36,21 +35,17 @@ const personalityMap = {
   }
 };
 
-// cute emoji labels for sliders - keep Social Vibe exactly as asked
 const emojiLabels = {
-  // Social Vibe - Step 1 (required)
   social_energy: "⚡ Social Energy",
   talkativeness: "🗣 Talkativeness",
   group_comfort: "🤗 Group Comfort",
   party_liking: "🎉 Party Liking",
   friendliness: "💕 Friendliness",
-  // Inner World
   alone_time_preference: "🌸 Alone Time",
   deep_reflection: "💭 Deep Reflection",
   listening_skill: "👂 Listening Skill",
   empathy: "💗 Empathy",
   curiosity: "🔍 Curiosity",
-  // Work Style
   organization: "📚 Organization",
   leadership: "👑 Leadership",
   planning: "📝 Planning",
@@ -58,7 +53,6 @@ const emojiLabels = {
   public_speaking_comfort: "🎤 Speaking Comfort",
   risk_taking: "🎲 Risk Taking",
   decision_speed: "⏩ Decision Speed",
-  // Lifestyle
   routine_preference: "🗓 Routine Love",
   excitement_seeking: "🌈 Excitement Seeking",
   spontaneity: "✨ Spontaneity",
@@ -95,11 +89,11 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const groupKeys = Object.keys(groups);
 
-  // same API call - do not change!
   const handlePredict = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/predict", {
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+      const res = await fetch(`${API_URL}/predict`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form)
@@ -112,7 +106,6 @@ export default function App() {
     setLoading(false);
   };
 
-  // result page
   if (result) {
     const key = String(result.personality_type).toLowerCase();
     const info = personalityMap[key] || personalityMap[String(result.personality_type)] || {
@@ -123,7 +116,6 @@ export default function App() {
 
     return (
       <div className="result-bg">
-        {/* floating hearts deco */}
         <div className="floating-hearts">
           <span>💖</span><span>✨</span><span>💕</span><span>🌸</span><span>💖</span><span>✨</span>
         </div>
@@ -133,8 +125,6 @@ export default function App() {
           <h2 className="result-title">{info.label}</h2>
           <p className="result-tagline">{info.tagline}</p>
           <p className="result-desc">{info.desc}</p>
-          
-          {/* confidence as pink progress bar */}
           <div className="confidence-wrap">
             <div className="confidence-top">
               <span>Confidence</span>
@@ -144,7 +134,6 @@ export default function App() {
               <div className="confidence-fill" style={{ width: `${result.confidence}%` }}></div>
             </div>
           </div>
-
           <button className="btn-black" onClick={() => setResult(null)}>Retake Test 🔄</button>
           <p className="footer">Made with 💖 by Monika 🎀</p>
         </div>
@@ -157,26 +146,18 @@ export default function App() {
 
   return (
     <div className="app-bg">
-      {/* floating hearts background */}
       <div className="floating-hearts">
         <span>💖</span><span>✨</span><span>💕</span><span>🌸</span><span>💖</span><span>✨</span><span>🎀</span><span>💗</span>
       </div>
-
       <div className="container">
-        {/* cute title */}
         <h1 className="main-title">Personality Check 🎀💖✨</h1>
         <p className="subtitle">Slide to spill the tea about youu ~</p>
-
-        {/* progress bar */}
         <div className="progress-bar">
           <div className="progress-fill" style={{ width: `${progress}%` }}></div>
         </div>
         <p className="step-text">Step {step + 1} / {groupKeys.length} • {currentGroup}</p>
-
-        {/* main card */}
         <div className="card">
           <h2 className="card-title">{currentGroup} 💅</h2>
-          
           {groups[currentGroup].map(key => {
             const percent = ((form[key] - 1) / 9) * 100;
             return (
@@ -198,7 +179,6 @@ export default function App() {
               </div>
             );
           })}
-
           <div className="btn-row">
             {step > 0 && (
               <button className="btn-outline" onClick={() => setStep(s => s - 1)}>
@@ -216,7 +196,6 @@ export default function App() {
             )}
           </div>
         </div>
-
         <p className="footer">Made with 💖 by Monika 🎀</p>
       </div>
     </div>
