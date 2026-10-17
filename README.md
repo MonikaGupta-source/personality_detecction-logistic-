@@ -3,7 +3,7 @@
 
 > A cute, aesthetic personality prediction app that tells you if you're a Cozy Dreamer 🌙 or a Sunshine personality 🌟
 
-**Live Demo:** https://personality-detection-git-main-next-gen-x1.vercel.app/✨
+**Live Demo:** https://personality-detection-git-main-next-gen-x1.vercel.app/
 
 ---
 
