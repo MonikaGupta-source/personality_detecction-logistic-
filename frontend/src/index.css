@@ -1,0 +1,38 @@
+/* reset + cute base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #ffe4ec 0%, #ffd6e0 100%);
+  color: #111111;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* cute scrollbar - pink */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #ffe4ec;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff4d6d;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c9184a;
+}
